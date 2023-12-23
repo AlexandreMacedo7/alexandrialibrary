@@ -1,14 +1,12 @@
 package com.alexandre.alexandrialibrary.model;
 
-import com.alexandre.alexandrialibrary.model.util.enums.Genre;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.alexandre.alexandrialibrary.util.enums.Genre;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "books")
 public class Book {
 
     @Id
@@ -17,8 +15,11 @@ public class Book {
     private String title;
     private String Author;
     private String ISBN;
+    @Enumerated(EnumType.STRING)
     private Genre genre;
     private int numberOfPages;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
     private BookPublisher publisher;
     private LocalDate publicationDate;
 

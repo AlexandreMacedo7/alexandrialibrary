@@ -1,15 +1,31 @@
 package com.alexandre.alexandrialibrary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "books_publishers")
 public class BookPublisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     private String name;
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    private List<Book> bookList;
+
+    public BookPublisher() {
+    }
+
+    public BookPublisher(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }
