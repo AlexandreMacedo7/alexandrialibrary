@@ -1,4 +1,4 @@
-package com.alexandre.alexandrialibrary.model.util.enums;
+package com.alexandre.alexandrialibrary.util.enums;
 
 public enum Genre {
 

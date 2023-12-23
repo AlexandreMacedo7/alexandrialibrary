@@ -1,12 +1,10 @@
 package com.alexandre.alexandrialibrary.model;
 
-import com.alexandre.alexandrialibrary.model.util.Address;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.alexandre.alexandrialibrary.util.Address;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,6 +14,7 @@ public class User {
     private String cpf;
     private String phoneNumber;
     private String email;
+    @Embedded
     private Address address;
 
     public User(Long id, String name, String cpf, String phoneNumber, String email, Address address) {

@@ -1,4 +1,4 @@
-package com.alexandre.alexandrialibrary.model.util;
+package com.alexandre.alexandrialibrary.util;
 
 public class Address {
 
