@@ -3,12 +3,12 @@ package com.alexandre.alexandrialibrary.util;
 public class Address {
 
     private String street;
-    private String Neighborhood;
+    private String neighborhood;
     private String zipCode;
 
     public Address(String street, String neighborhood, String zipCode) {
         this.street = street;
-        Neighborhood = neighborhood;
+        this.neighborhood = neighborhood;
         this.zipCode = zipCode;
     }
 
@@ -21,11 +21,11 @@ public class Address {
     }
 
     public String getNeighborhood() {
-        return Neighborhood;
+        return neighborhood;
     }
 
     public void setNeighborhood(String neighborhood) {
-        Neighborhood = neighborhood;
+        this.neighborhood = neighborhood;
     }
 
     public String getZipCode() {
