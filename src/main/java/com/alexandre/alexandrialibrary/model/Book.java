@@ -4,6 +4,7 @@ import com.alexandre.alexandrialibrary.util.enums.Genre;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -14,6 +15,7 @@ public class Book {
     private Long id;
     private String title;
     private String Author;
+    @Column(name = "isbn", unique = true)
     private String ISBN;
     @Enumerated(EnumType.STRING)
     private Genre genre;
@@ -22,8 +24,11 @@ public class Book {
     @JoinColumn(name = "publisher_id")
     private BookPublisher publisher;
     private LocalDate publicationDate;
+    private int quantity;
+    @OneToMany(mappedBy = "book")
+    private List<BookLending> bookLendingList;
 
-    public Book(Long id, String title, String author, String ISBN, Genre genre, int numberOfPages, BookPublisher publisher, LocalDate publicationDate) {
+    public Book(Long id, String title, String author, String ISBN, Genre genre, int numberOfPages, BookPublisher publisher, LocalDate publicationDate, int quantity) {
         this.id = id;
         this.title = title;
         Author = author;
@@ -32,14 +37,11 @@ public class Book {
         this.numberOfPages = numberOfPages;
         this.publisher = publisher;
         this.publicationDate = publicationDate;
+        this.quantity = quantity;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -98,4 +100,11 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
