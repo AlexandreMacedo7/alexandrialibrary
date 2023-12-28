@@ -1,9 +1,6 @@
 package com.alexandre.alexandrialibrary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,32 +12,43 @@ public class BookLending {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long idUser;
-    private Long idBook;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
     private LocalDateTime dateOfWithdrawal;
     private LocalDate returnDate;
+    private LocalDate actualReturnDate;
+    private Boolean returned;
 
-    public BookLending(Long idUser, Long idBook, LocalDateTime dateOfWithdrawal, LocalDate returnDate) {
-        this.idUser = idUser;
-        this.idBook = idBook;
+    public BookLending(User user, Book book, LocalDateTime dateOfWithdrawal, LocalDate returnDate, LocalDate actualReturnDate) {
+        this.user = user;
+        this.book = book;
         this.dateOfWithdrawal = dateOfWithdrawal;
         this.returnDate = returnDate;
+        this.actualReturnDate = actualReturnDate;
     }
 
-    public Long getIdUser() {
-        return idUser;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public User getUser() {
+        return user;
     }
 
-    public Long getIdBook() {
-        return idBook;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setIdBook(Long idBook) {
-        this.idBook = idBook;
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public LocalDateTime getDateOfWithdrawal() {
@@ -57,5 +65,21 @@ public class BookLending {
 
     public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public LocalDate getActualReturnDate() {
+        return actualReturnDate;
+    }
+
+    public void setActualReturnDate(LocalDate actualReturnDate) {
+        this.actualReturnDate = actualReturnDate;
+    }
+
+    public Boolean getReturned() {
+        return returned;
+    }
+
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
     }
 }
