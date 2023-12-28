@@ -3,6 +3,8 @@ package com.alexandre.alexandrialibrary.model;
 import com.alexandre.alexandrialibrary.util.Address;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -11,11 +13,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Column(name = "cpf",unique = true)
     private String cpf;
     private String phoneNumber;
+    @Column(name = "email", unique = true)
     private String email;
     @Embedded
     private Address address;
+    @OneToMany(mappedBy = "user")
+    private List<BookLending> bookLendingList;
+
 
     public User(Long id, String name, String cpf, String phoneNumber, String email, Address address) {
         this.id = id;
@@ -28,10 +35,6 @@ public class User {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
