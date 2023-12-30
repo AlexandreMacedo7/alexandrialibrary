@@ -28,6 +28,9 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<BookLending> bookLendingList;
 
+    public Book() {
+    }
+
     public Book(Long id, String title, String author, String ISBN, Genre genre, int numberOfPages, BookPublisher publisher, LocalDate publicationDate, int quantity) {
         this.id = id;
         this.title = title;
