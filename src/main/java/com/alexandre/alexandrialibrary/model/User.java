@@ -23,6 +23,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<BookLending> bookLendingList;
 
+    public User() {
+    }
 
     public User(Long id, String name, String cpf, String phoneNumber, String email, Address address) {
         this.id = id;
