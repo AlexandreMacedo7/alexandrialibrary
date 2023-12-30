@@ -10,6 +10,7 @@ public class BookPublisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @Column(name = "name", unique = true)
     private String name;
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private List<Book> bookList;
