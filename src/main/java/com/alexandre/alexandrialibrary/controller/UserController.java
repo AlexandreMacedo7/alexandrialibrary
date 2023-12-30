@@ -1,6 +1,5 @@
 package com.alexandre.alexandrialibrary.controller;
 
-import com.alexandre.alexandrialibrary.model.dto.CreateBookDTO;
 import com.alexandre.alexandrialibrary.model.dto.CreateUserDTO;
 import com.alexandre.alexandrialibrary.service.UserService;
 import jakarta.validation.Valid;
