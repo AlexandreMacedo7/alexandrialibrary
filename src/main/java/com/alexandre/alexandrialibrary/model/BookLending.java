@@ -3,7 +3,6 @@ package com.alexandre.alexandrialibrary.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class BookLending {
@@ -18,12 +17,15 @@ public class BookLending {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
-    private LocalDateTime dateOfWithdrawal;
+    private LocalDate dateOfWithdrawal;
     private LocalDate returnDate;
     private LocalDate actualReturnDate;
     private Boolean returned;
 
-    public BookLending(User user, Book book, LocalDateTime dateOfWithdrawal, LocalDate returnDate, LocalDate actualReturnDate) {
+    public BookLending() {
+    }
+
+    public BookLending(User user, Book book, LocalDate dateOfWithdrawal, LocalDate returnDate, LocalDate actualReturnDate) {
         this.user = user;
         this.book = book;
         this.dateOfWithdrawal = dateOfWithdrawal;
@@ -51,11 +53,11 @@ public class BookLending {
         this.book = book;
     }
 
-    public LocalDateTime getDateOfWithdrawal() {
+    public LocalDate getDateOfWithdrawal() {
         return dateOfWithdrawal;
     }
 
-    public void setDateOfWithdrawal(LocalDateTime dateOfWithdrawal) {
+    public void setDateOfWithdrawal(LocalDate dateOfWithdrawal) {
         this.dateOfWithdrawal = dateOfWithdrawal;
     }
 
