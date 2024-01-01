@@ -4,6 +4,7 @@ import com.alexandre.alexandrialibrary.util.enums.Genre;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class Book {
     private LocalDate publicationDate;
     private int quantity;
     @OneToMany(mappedBy = "book")
-    private List<BookLending> bookLendingList;
+    private List<BookLending> bookLendingList = new ArrayList<>();
 
     public Book() {
     }
@@ -109,5 +110,9 @@ public class Book {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void addLoan(BookLending bookLending){
+        bookLendingList.add(bookLending);
     }
 }
