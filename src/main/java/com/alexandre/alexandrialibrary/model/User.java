@@ -3,6 +3,7 @@ package com.alexandre.alexandrialibrary.model;
 import com.alexandre.alexandrialibrary.util.Address;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class User {
     @Embedded
     private Address address;
     @OneToMany(mappedBy = "user")
-    private List<BookLending> bookLendingList;
+    private List<BookLending> bookLendingList = new ArrayList<>();
 
     public User() {
     }
@@ -79,5 +80,7 @@ public class User {
         this.address = address;
     }
 
-
+    public void addLoan(BookLending bookLending){
+        bookLendingList.add(bookLending);
+    }
 }
