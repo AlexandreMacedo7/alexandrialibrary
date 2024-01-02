@@ -1,5 +1,7 @@
 package com.alexandre.alexandrialibrary.service;
 
+import com.alexandre.alexandrialibrary.infra.ValidationException;
+import com.alexandre.alexandrialibrary.model.Book;
 import com.alexandre.alexandrialibrary.model.BookPublisher;
 import com.alexandre.alexandrialibrary.model.dto.CreateBookDTO;
 import com.alexandre.alexandrialibrary.repository.BookPublisherRepository;
@@ -38,6 +40,11 @@ public class BookService {
         bookRepository.save(book);
     }
 
+    public void removeBook(Book book){
+        validateQuantity(book);
+        book.setQuantity(book.getQuantity() - 1);
+    }
+
     @Transactional
     private BookPublisher createAndSavePublisher(String namePublisher) {
 
@@ -56,5 +63,10 @@ public class BookService {
 
     private BookPublisher createPublisher(String namePublisher) {
         return new BookPublisher(namePublisher);
+    }
+    private void validateQuantity(Book book){
+        if (book.getQuantity() <= 0){
+            throw new ValidationException("Este livro está indisponivel no estoque.");
+        }
     }
 }
