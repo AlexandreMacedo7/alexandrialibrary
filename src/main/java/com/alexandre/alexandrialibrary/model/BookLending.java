@@ -20,7 +20,7 @@ public class BookLending {
     private LocalDate dateOfWithdrawal;
     private LocalDate returnDate;
     private LocalDate actualReturnDate;
-    private Boolean returned;
+    private Boolean returned = false;
 
     public BookLending() {
     }

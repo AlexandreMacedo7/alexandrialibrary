@@ -12,7 +12,6 @@ public class BookLendingMapper {
         BookLending bookLending = new BookLending();
         bookLending.setDateOfWithdrawal(lendingDTO.dateOfWithdrawal());
         bookLending.setReturnDate(lendingDTO.returnDate());
-        bookLending.setReturned(false);
 
         return bookLending;
     }
