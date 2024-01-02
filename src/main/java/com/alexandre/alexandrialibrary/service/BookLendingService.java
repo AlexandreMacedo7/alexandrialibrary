@@ -19,12 +19,14 @@ public class BookLendingService {
     private final BookLendingMapper lendingMapper;
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
+    private final BookService bookService;
 
-    public BookLendingService(BookLendingRepository lendingRepository, BookLendingMapper lendingMapper, UserRepository userRepository, BookRepository bookRepository) {
+    public BookLendingService(BookLendingRepository lendingRepository, BookLendingMapper lendingMapper, UserRepository userRepository, BookRepository bookRepository, BookService bookService) {
         this.lendingRepository = lendingRepository;
         this.lendingMapper = lendingMapper;
         this.userRepository = userRepository;
         this.bookRepository = bookRepository;
+        this.bookService = bookService;
     }
 
     @Transactional
@@ -54,6 +56,7 @@ public class BookLendingService {
         userRepository.save(user);
     }
     private void addLoanToBook(Book book, BookLending bookLending){
+        bookService.removeBook(book);
         book.addLoan(bookLending);
         bookRepository.save(book);
     }
