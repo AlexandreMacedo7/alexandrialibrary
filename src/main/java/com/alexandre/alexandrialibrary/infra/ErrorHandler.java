@@ -35,7 +35,8 @@ public class ErrorHandler {
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<?> businessRulesErrorsHandler(ValidationException exception) {
-        return ResponseEntity.badRequest().body(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(response = new ErrorResponse(exception.getMessage()));
     }
 
     private record DataValidationError(String field, String message) {
