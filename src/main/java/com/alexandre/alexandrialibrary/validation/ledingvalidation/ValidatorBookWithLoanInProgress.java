@@ -8,12 +8,12 @@ import com.alexandre.alexandrialibrary.repository.BookLendingRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidatesBookWithLoanInProgress implements LendingValidator<BookLending>{
+public class ValidatorBookWithLoanInProgress implements LendingValidator<BookLending>{
 
 
     private final BookLendingRepository lendingRepository;
 
-    public ValidatesBookWithLoanInProgress(BookLendingRepository lendingRepository) {
+    public ValidatorBookWithLoanInProgress(BookLendingRepository lendingRepository) {
         this.lendingRepository = lendingRepository;
     }
 

@@ -6,7 +6,7 @@ import com.alexandre.alexandrialibrary.model.BookLending;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookQuantityAvailable implements LendingValidator<BookLending> {
+public class ValidatorBookQuantityAvailable implements LendingValidator<BookLending> {
 
     @Override
     public void validate(BookLending bookLending) {

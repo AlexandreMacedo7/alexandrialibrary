@@ -6,11 +6,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ISBNValidator implements BookValidator<CreateBookDTO> {
+public class ValidatorISBN implements BookValidator<CreateBookDTO> {
 
     private final BookRepository bookRepository;
 
-    public ISBNValidator(BookRepository bookRepository) {
+    public ValidatorISBN(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
