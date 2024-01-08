@@ -8,9 +8,12 @@ import com.alexandre.alexandrialibrary.repository.BookLendingRepository;
 import com.alexandre.alexandrialibrary.repository.BookRepository;
 import com.alexandre.alexandrialibrary.repository.UserRepository;
 import com.alexandre.alexandrialibrary.util.mapper.BookLendingMapper;
+import com.alexandre.alexandrialibrary.validation.ledingvalidation.LendingValidator;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BookLendingService {
@@ -20,13 +23,15 @@ public class BookLendingService {
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
     private final BookService bookService;
+    private final List<LendingValidator> validators;
 
-    public BookLendingService(BookLendingRepository lendingRepository, BookLendingMapper lendingMapper, UserRepository userRepository, BookRepository bookRepository, BookService bookService) {
+    public BookLendingService(BookLendingRepository lendingRepository, BookLendingMapper lendingMapper, UserRepository userRepository, BookRepository bookRepository, BookService bookService, List<LendingValidator> validators) {
         this.lendingRepository = lendingRepository;
         this.lendingMapper = lendingMapper;
         this.userRepository = userRepository;
         this.bookRepository = bookRepository;
         this.bookService = bookService;
+        this.validators = validators;
     }
 
     @Transactional
@@ -38,6 +43,8 @@ public class BookLendingService {
 
         bookLending.setUser(user);
         bookLending.setBook(book);
+
+        validators.forEach(v -> v.validate(bookLending));
 
         lendingRepository.save(bookLending);
 
